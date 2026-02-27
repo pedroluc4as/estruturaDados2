@@ -1,0 +1,12 @@
+# Arquivos de compilação
+*.o
+*.out
+*.exe
+*.so
+.build/
+
+# Arquivos temporários
+.vscode/
+*.swp
+*~
+.DS_Store
