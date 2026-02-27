@@ -17,7 +17,7 @@ No *criarNo(int valor)
         printf("Fechando o programa...\n");
         return 0;
     }
-    novoNo->valor = valor; //novoNo recebe o valor passado como parametro
+    novoNo->valor = valor; //novoNo recebe o valor passado como parametro pela funcao *criarNo
     novoNo->esquerda = NULL;
     novoNo->direita = NULL;
     //define a esq e direita da arvore como NULL,
