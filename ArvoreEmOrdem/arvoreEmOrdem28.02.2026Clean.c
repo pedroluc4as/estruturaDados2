@@ -23,13 +23,13 @@ No *criarNo(int valor)
     return novoNo;
 }
 
-void preOrdem(No *raiz)
+void emOrdem(No *raiz)
 {
     if (raiz != NULL)
     {
+        emOrdem(raiz->esquerda);
         printf("%d ", raiz->valor);
-        preOrdem(raiz->esquerda);
-        preOrdem(raiz->direita);
+        emOrdem(raiz->direita);
 
         free(raiz);
     }
@@ -45,8 +45,8 @@ int main()
     raiz->esquerda->direita = criarNo(39);
     raiz->direita->direita->direita = criarNo(100);
 
-    printf("Valores em Pre-Ordem: ");
-    preOrdem(raiz);
+    printf("Valores em Em-ordem: ");
+    emOrdem(raiz);
     printf("\n");
 
     return 0;
