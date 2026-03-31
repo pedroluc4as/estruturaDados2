@@ -1,9 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "biblioteca.h"
+
+#define PRETO 0
+#define VERMELHO 1
 
 typedef struct No
 {
     int valor;
+    int cor;
     struct No *esquerda;
     struct No *direita;
 } No;
@@ -18,19 +23,20 @@ No *criarNo(int valor)
         return NULL;
     }
     novoNo->valor = valor;
+    novoNo->cor = VERMELHO;
     novoNo->esquerda = NULL;
     novoNo->direita = NULL;
     return novoNo;
 }
 
-void posOrdem(No *raiz)
+void preOrdem(No *raiz)
 {
     if (raiz != NULL)
     {
-        posOrdem(raiz->esquerda);
-        posOrdem(raiz->direita);
         printf("%d ", raiz->valor);
-        
+        preOrdem(raiz->esquerda);
+        preOrdem(raiz->direita);
+
         free(raiz);
     }
 }
@@ -45,8 +51,8 @@ int main()
     raiz->esquerda->direita = criarNo(39);
     raiz->direita->direita->direita = criarNo(100);
 
-    printf("Valores em Pos-Ordem: ");
-    posOrdem(raiz);
+    printf("Valores em Pre-Ordem: ");
+    preOrdem(raiz);
     printf("\n");
 
     return 0;

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "biblioteca.h"
 
 typedef struct No
 {
@@ -15,25 +16,22 @@ No *criarNo(int valor)
     {
         printf("Erro de alocacao de memoria!\n");
         printf("Fechando o programa...\n");
-        return NULL; // return NULL pois aqui estamos lidando com os endereços de memória
+        return NULL;
     }
-    novoNo->valor = valor; // novoNo recebe o valor passado como parametro pela funcao *criarNo
+    novoNo->valor = valor;
     novoNo->esquerda = NULL;
     novoNo->direita = NULL;
-    // define a esq e direita da arvore como NULL,
-    // pois o No ainda nao possui filhos pois acabou de ser criado!
-    return novoNo; // retorna o novo no Vazio,
-    // porem apenas com o valor do No passado por parametro
+    return novoNo;
 }
 
-void preOrdem(No *raiz)
+void posOrdem(No *raiz)
 {
     if (raiz != NULL)
     {
+        posOrdem(raiz->esquerda);
+        posOrdem(raiz->direita);
         printf("%d ", raiz->valor);
-        preOrdem(raiz->esquerda);
-        preOrdem(raiz->direita);
-
+        
         free(raiz);
     }
 }
@@ -48,8 +46,8 @@ int main()
     raiz->esquerda->direita = criarNo(39);
     raiz->direita->direita->direita = criarNo(100);
 
-    printf("Valores em pre ordem: ");
-    preOrdem(raiz);
+    printf("Valores em Pos-Ordem: ");
+    posOrdem(raiz);
     printf("\n");
 
     return 0;

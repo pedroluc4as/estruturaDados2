@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "biblioteca.h"
 
 typedef struct No
 {
     int valor;
-    struct No *esquerda;
-    struct No *direita;
+    struct No *esq;
+    struct No *dir;
 } No;
 
 No *criarNo(int valor)
@@ -19,8 +20,8 @@ No *criarNo(int valor)
         return NULL;
     }
     novoNo->valor = valor;
-    novoNo->esquerda = NULL;
-    novoNo->direita = NULL;
+    novoNo->esq = NULL;
+    novoNo->dir = NULL;
     return novoNo;
 }
 
@@ -33,11 +34,11 @@ No *inserir(No *raiz, int valor)
 
     if (valor < raiz->valor)
     {
-        raiz->esquerda = inserir(raiz->esquerda, valor);
+        raiz->esq = inserir(raiz->esq, valor);
     }
     else if (valor > raiz->valor)
     {
-        raiz->direita = inserir(raiz->direita, valor);
+        raiz->dir = inserir(raiz->dir, valor);
     }
 
     return raiz;
@@ -47,8 +48,8 @@ void posOrdem(No *raiz)
 {
     if (raiz != NULL)
     {
-        posOrdem(raiz->esquerda);
-        posOrdem(raiz->direita);
+        posOrdem(raiz->esq);
+        posOrdem(raiz->dir);
         printf("%d ", raiz->valor);
 
         free(raiz);
@@ -59,9 +60,9 @@ void emOrdem(No *raiz)
 {
     if (raiz != NULL)
     {
-        emOrdem(raiz->esquerda);
+        emOrdem(raiz->esq);
         printf("%d ", raiz->valor);
-        emOrdem(raiz->direita);
+        emOrdem(raiz->dir);
 
         free(raiz);
     }
@@ -72,8 +73,8 @@ void preOrdem(No *raiz)
     if (raiz != NULL)
     {
         printf("%d ", raiz->valor);
-        preOrdem(raiz->esquerda);
-        preOrdem(raiz->direita);
+        preOrdem(raiz->esq);
+        preOrdem(raiz->dir);
 
         free(raiz);
     }
